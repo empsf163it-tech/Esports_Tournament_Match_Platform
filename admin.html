@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Organizer Dashboard — ARENA</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <!-- HEADER: BRAND LEFT, LOGOUT RIGHT -->
+    <header class="site-header">
+        <a class="brand" href="index.html">
+            <span class="brand-mark">A</span>
+            <span>ARENA<span class="brand-dot">.</span><small>ORGANIZER CONSOLE</small></span>
+        </a>
+        <div class="admin-header-actions">
+            <span class="pill pill-live">DEMO WORKSPACE</span>
+            <a class="admin-logout-btn" href="index.html">⎋ Logout</a>
+        </div>
+    </header>
+
+    <!-- MAIN SINGLE-PAGE DASHBOARD CONTENT (NO SIDEBAR) -->
+    <main class="admin-shell single-page">
+        <div class="admin-content">
+            <!-- HEADING & TOP ACTION -->
+            <div class="admin-heading">
+                <div>
+                    <div class="eyebrow"><span class="live-dot"></span> WEDNESDAY, OCTOBER 14, 2026 · LIVE OPERATIONS</div>
+                    <h1>Organizer <span>dashboard.</span></h1>
+                    <p>Manage active competitions, verify team signups, input live scores, and configure tournament brackets.</p>
+                </div>
+                <button class="btn btn-primary" id="show-create-form">+ Create tournament ↗</button>
+            </div>
+
+            <!-- METRIC CARDS -->
+            <div class="admin-metrics">
+                <div class="metric-card">
+                    <small>ACTIVE TOURNAMENTS</small>
+                    <strong id="metric-tournaments">6</strong>
+                    <span>Across 3 games · 2 open</span>
+                </div>
+                <div class="metric-card">
+                    <small>REGISTERED TEAMS</small>
+                    <strong>128</strong>
+                    <span>+12 new this week</span>
+                </div>
+                <div class="metric-card">
+                    <small>UPCOMING MATCHES</small>
+                    <strong>14</strong>
+                    <span>Next 7 days · 3 live</span>
+                </div>
+                <div class="metric-card">
+                    <small>PRIZE POOLS</small>
+                    <strong>₹5.2L</strong>
+                    <span>Total announced circuit</span>
+                </div>
+            </div>
+
+            <!-- COLLAPSIBLE CREATE TOURNAMENT FORM -->
+            <section class="admin-panel create-panel" id="create-panel" hidden>
+                <div class="panel-heading">
+                    <div>
+                        <h2>Create a tournament</h2>
+                        <p>Launch a new competition directly into the active circuit table.</p>
+                    </div>
+                    <button class="btn btn-ghost" id="hide-create-form">Close ×</button>
+                </div>
+                <form id="create-tournament-form" class="admin-form">
+                    <label>Tournament name
+                        <input required name="name" placeholder="e.g. Midnight Masters Cup">
+                    </label>
+                    <label>Game discipline
+                        <select name="game">
+                            <option>Valorant</option>
+                            <option>BGMI</option>
+                            <option>CS2</option>
+                            <option>Rocket League</option>
+                            <option>League of Legends</option>
+                        </select>
+                    </label>
+                    <label>Prize pool
+                        <input required name="prize" placeholder="e.g. ₹50,000">
+                    </label>
+                    <label>Team capacity
+                        <input required type="number" min="2" max="512" name="capacity" value="16">
+                    </label>
+                    <button class="btn btn-primary" type="submit">Add demo tournament ↗</button>
+                </form>
+                <p class="form-note">This is an interactive front-end demo. Changes are stored in-memory during this session.</p>
+            </section>
+
+            <!-- PUBLISHED TOURNAMENTS TABLE -->
+            <section class="admin-panel" id="events">
+                <div class="panel-heading">
+                    <div>
+                        <h2>Your tournaments</h2>
+                        <p>Monitor status, team capacity, and prize pools across published competitions.</p>
+                    </div>
+                    <span class="pill">6 TOTAL</span>
+                </div>
+
+                <!-- Status Filter Buttons -->
+                <div class="admin-table-filters">
+                    <button class="admin-filter-btn active" data-admin-filter="all">All (6)</button>
+                    <button class="admin-filter-btn" data-admin-filter="open">Open (3)</button>
+                    <button class="admin-filter-btn" data-admin-filter="starts soon">Starts soon (1)</button>
+                    <button class="admin-filter-btn" data-admin-filter="live">Live (2)</button>
+                </div>
+
+                <div class="admin-table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>TOURNAMENT</th>
+                                <th>GAME</th>
+                                <th>FORMAT</th>
+                                <th>STATUS</th>
+                                <th>TEAMS</th>
+                                <th>PRIZE POOL</th>
+                                <th>ACTIONS</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-tournament-table">
+                            <tr>
+                                <td>
+                                    <div class="admin-tourney-cell">
+                                        <img class="admin-tourney-thumb" src="assets/images/05_2019_Road_to_TwithCon_Esports_tournament_Camp_Mabry_(32864489347).jpg" alt="Neon Clash">
+                                        <div><strong>Neon Clash Championship</strong><small>24 Oct 2026</small></div>
+                                    </div>
+                                </td>
+                                <td>Valorant</td>
+                                <td>Single Elimination</td>
+                                <td><span class="pill pill-open">Open</span></td>
+                                <td>16 / 32</td>
+                                <td>₹1,00,000</td>
+                                <td><a class="text-link" href="tournament-detail.html">Manage bracket ↗</a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="admin-tourney-cell">
+                                        <img class="admin-tourney-thumb" src="assets/images/16_2019_Road_to_TwithCon_Esports_tournament_Camp_Mabry_(40841674983).jpg" alt="Drop Zone">
+                                        <div><strong>Drop Zone Open Series</strong><small>26 Oct 2026</small></div>
+                                    </div>
+                                </td>
+                                <td>BGMI</td>
+                                <td>Battle Royale Points</td>
+                                <td><span class="pill pill-open">Open</span></td>
+                                <td>21 / 25</td>
+                                <td>₹75,000</td>
+                                <td><a class="text-link" href="tournament-detail.html">Manage bracket ↗</a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="admin-tourney-cell">
+                                        <img class="admin-tourney-thumb" src="assets/images/23_Coast_Guard_Gaming_Shines_in_First_International_Esports_Tournament_at_Ramstein_.jpg" alt="Frag League">
+                                        <div><strong>Frag League Invitational</strong><small>28 Oct 2026</small></div>
+                                    </div>
+                                </td>
+                                <td>CS2</td>
+                                <td>Group Stage + Playoffs</td>
+                                <td><span class="pill pill-soon">Starts soon</span></td>
+                                <td>8 / 16</td>
+                                <td>₹50,000</td>
+                                <td><a class="text-link" href="tournament-detail.html">Manage bracket ↗</a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="admin-tourney-cell">
+                                        <img class="admin-tourney-thumb" src="assets/images/26_DTM_esports,_EMS_2024,_Essen_(P1031995).jpg" alt="Turbo Masters">
+                                        <div><strong>Turbo Masters Cup</strong><small>02 Nov 2026</small></div>
+                                    </div>
+                                </td>
+                                <td>Rocket League</td>
+                                <td>Double Elimination</td>
+                                <td><span class="pill pill-open">Open</span></td>
+                                <td>14 / 16</td>
+                                <td>₹40,000</td>
+                                <td><a class="text-link" href="tournament-detail.html">Manage bracket ↗</a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="admin-tourney-cell">
+                                        <img class="admin-tourney-thumb" src="assets/images/34_Legends_are_born_during_esports_tournament_(4496043).jpg" alt="Rift Legends">
+                                        <div><strong>Rift Legends Showcase</strong><small>05 Nov 2026</small></div>
+                                    </div>
+                                </td>
+                                <td>LoL</td>
+                                <td>Swiss System (4 Rds)</td>
+                                <td><span class="pill pill-live">● Live</span></td>
+                                <td>12 / 16</td>
+                                <td>₹80,000</td>
+                                <td><a class="text-link" href="tournament-detail.html">Manage bracket ↗</a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="admin-tourney-cell">
+                                        <img class="admin-tourney-thumb" src="assets/images/21_2019_SEA_Games_Esports_Tekken_7_THA_vs_PHI.jpg" alt="Ignition Cup">
+                                        <div><strong>Ignition Cup Series</strong><small>08 Nov 2026</small></div>
+                                    </div>
+                                </td>
+                                <td>Valorant</td>
+                                <td>Double Elimination</td>
+                                <td><span class="pill pill-live">● Live</span></td>
+                                <td>18 / 32</td>
+                                <td>₹60,000</td>
+                                <td><a class="text-link" href="tournament-detail.html">Manage bracket ↗</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- TWO-COLUMN OPERATIONS DESK -->
+            <div class="admin-grid-two">
+                <!-- COLUMN 1: RECENT REGISTRATIONS -->
+                <section class="admin-panel" id="registrations">
+                    <div class="panel-heading">
+                        <div>
+                            <h2>Recent registrations</h2>
+                            <p>Review and verify team entries.</p>
+                        </div>
+                        <a class="text-link" href="tournaments.html">Public page ↗</a>
+                    </div>
+                    <div class="registration-row">
+                        <span class="team-emblem">V</span>
+                        <div>
+                            <strong>Vortex Gaming</strong>
+                            <small>Neon Clash · 5-player roster</small>
+                        </div>
+                        <span class="pill pill-open">Pending review</span>
+                        <button class="btn btn-small btn-outline" data-approve>Approve</button>
+                    </div>
+                    <div class="registration-row">
+                        <span class="team-emblem emblem-purple">N</span>
+                        <div>
+                            <strong>NextGen Esports</strong>
+                            <small>Drop Zone · 4-player squad</small>
+                        </div>
+                        <span class="pill pill-open">Pending review</span>
+                        <button class="btn btn-small btn-outline" data-approve>Approve</button>
+                    </div>
+                    <div class="registration-row">
+                        <span class="team-emblem emblem-orange">F</span>
+                        <div>
+                            <strong>Fury Unit</strong>
+                            <small>Frag League · 5-player roster</small>
+                        </div>
+                        <span class="pill pill-live">Approved (demo)</span>
+                        <button class="btn btn-small btn-outline" disabled>Approved</button>
+                    </div>
+                </section>
+
+                <!-- COLUMN 2: MATCH OPERATIONS -->
+                <section class="admin-panel" id="fixtures">
+                    <div class="panel-heading">
+                        <div>
+                            <h2>Match operations</h2>
+                            <p>Input scores and verify match outcomes.</p>
+                        </div>
+                        <a class="text-link" href="matches.html">Match center ↗</a>
+                    </div>
+                    <div class="match-row compact">
+                        <div class="match-game">
+                            <span class="game-icon icon-v">V</span>
+                            <div>
+                                <strong>VTX vs RAV</strong>
+                                <small>Neon Clash · Semi-final</small>
+                            </div>
+                        </div>
+                        <span class="match-status status-upcoming">18:30 IST</span>
+                        <button class="btn btn-small btn-outline" data-score>Enter score</button>
+                    </div>
+                    <div class="match-row compact">
+                        <div class="match-game">
+                            <span class="game-icon icon-b">B</span>
+                            <div>
+                                <strong>NXG vs FURY</strong>
+                                <small>Drop Zone · Round 3</small>
+                            </div>
+                        </div>
+                        <span class="match-status status-live">● LIVE</span>
+                        <button class="btn btn-small btn-outline" data-score>Enter score</button>
+                    </div>
+                    <div class="match-row compact">
+                        <div class="match-game">
+                            <span class="game-icon icon-c">C</span>
+                            <div>
+                                <strong>WOLF vs ARC</strong>
+                                <small>Frag League · Group A</small>
+                            </div>
+                        </div>
+                        <span class="match-status status-upcoming">TOMORROW</span>
+                        <button class="btn btn-small btn-outline" data-score>Enter score</button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- WORKSPACE SETTINGS & STATUS STRIP -->
+            <div class="workspace-status-card" id="settings">
+                <div class="workspace-status-item">
+                    <small>DEFAULT FORMAT</small>
+                    <strong>Double Elimination</strong>
+                </div>
+                <div class="workspace-status-item">
+                    <small>CHECK-IN WINDOW</small>
+                    <strong>15 mins before match</strong>
+                </div>
+                <div class="workspace-status-item">
+                    <small>API ENGINE</small>
+                    <strong><span class="dot-green"></span> REST API v2 Connected</strong>
+                </div>
+                <div class="workspace-status-item">
+                    <small>DISPUTE AUTO-TIMER</small>
+                    <strong>10 mins per round</strong>
+                </div>
+            </div>
+
+            <p class="form-note">Security note: this organizer dashboard is running in demonstration mode. Connect
+                authentication and role-based access controls before deploying to production.</p>
+        </div>
+    </main>
+
+    <script src="assets/app.js"></script>
+</body>
+
+</html>

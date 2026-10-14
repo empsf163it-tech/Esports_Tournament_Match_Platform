@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Matches — ARENA</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <header class="site-header"><a class="brand" href="index.html"><span class="brand-mark">A</span><span>ARENA<span
+                    class="brand-dot">.</span><small>COMPETE TOGETHER</small></span></a><button class="menu-toggle"
+            aria-label="Toggle navigation" data-menu-toggle>☰</button>
+        <nav class="nav" data-nav><a href="index.html">Home</a><a href="tournaments.html">Tournaments</a><a
+                class="active" href="matches.html">Matches</a><a href="teams.html">Teams</a><a
+                href="media.html">Media</a><a href="admin.html">Admin</a></nav>
+        <div class="header-actions"><a class="btn btn-primary"
+                href="tournaments.html">Find tournaments <span>↗</span></a></div>
+    </header>
+    <main>
+        <section class="page-hero wrap">
+            <div class="eyebrow">MATCH CENTER / SEASON 04</div>
+            <h1>Every match.<br><span>Every moment.</span></h1>
+            <p>Follow upcoming fixtures, sample live matches, and completed results from the ARENA circuit.</p>
+        </section>
+        <section class="section wrap">
+            <!-- FEATURED LIVE MATCH SPOTLIGHT -->
+            <div class="match-spotlight-card">
+                <div class="match-spotlight-content">
+                    <span class="pill pill-live">● LIVE ON MAIN STAGE</span>
+                    <h3>SEA Games Pro Invitational: Grand Final</h3>
+                    <p style="color:var(--muted);font-size:12px;margin:0 0 14px;">Tekken 7 Pro Circuit · Best of 5 Series · Main Stage Broadcast</p>
+                    <div class="match-spotlight-teams">
+                        <span class="spotlight-team-pill">THAILAND (PHI)</span>
+                        <span class="spotlight-score">2 — 1</span>
+                        <span class="spotlight-team-pill">MALAYSIA (MAS)</span>
+                    </div>
+                    <div style="display:flex;gap:12px;align-items:center;margin-top:16px;flex-wrap:wrap;">
+                        <a class="btn btn-primary btn-small" href="tournament-detail.html">Watch live stream <span>↗</span></a>
+                        <span style="font:10px var(--mono);color:var(--lime);">● Game 4 Map Selection in progress</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-bar" role="tablist"><button class="tab active" data-match-tab="all">All
+                    matches</button><button class="tab" data-match-tab="upcoming">Upcoming</button><button class="tab"
+                    data-match-tab="live">Live now</button><button class="tab"
+                    data-match-tab="completed">Completed</button></div>
+            <div class="match-list match-list-large" id="match-list">
+                <div class="match-row" data-state="upcoming">
+                    <div class="match-game"><span class="game-icon icon-v">V</span>
+                        <div><strong>Neon Clash · Semi-final</strong><small>VALORANT · OCT 14, 18:30 IST</small></div>
+                    </div>
+                    <div class="versus"><b>VTX</b><span>VS</span><b>RAV</b></div><span
+                        class="match-status status-upcoming">UPCOMING</span><a class="arrow-link"
+                        href="tournament-detail.html">↗</a>
+                </div>
+                <div class="match-row" data-state="live">
+                    <div class="match-game"><span class="game-icon icon-b">B</span>
+                        <div><strong>Drop Zone · Round 3</strong><small>BGMI · OCT 14, 20:00 IST</small></div>
+                    </div>
+                    <div class="versus"><b>NXG <em>42</em></b><span>VS</span><b>FURY <em>36</em></b></div><span
+                        class="match-status status-live">● LIVE</span><a class="arrow-link"
+                        href="tournament-detail.html">↗</a>
+                </div>
+                <div class="match-row" data-state="completed">
+                    <div class="match-game"><span class="game-icon icon-c">C</span>
+                        <div><strong>Frag League · Group A</strong><small>CS2 · OCT 13, 17:00 IST</small></div>
+                    </div>
+                    <div class="versus"><b>WOLF <em>13</em></b><span>VS</span><b>ARC <em>9</em></b></div><span
+                        class="match-status status-done">COMPLETED</span><a class="arrow-link"
+                        href="tournament-detail.html">↗</a>
+                </div>
+                <div class="match-row" data-state="completed">
+                    <div class="match-game"><span class="game-icon icon-v">V</span>
+                        <div><strong>Rookie Rush · Qualifier</strong><small>VALORANT · OCT 12, 19:00 IST</small></div>
+                    </div>
+                    <div class="versus"><b>ARC <em>2</em></b><span>VS</span><b>ZEN <em>0</em></b></div><span
+                        class="match-status status-done">COMPLETED</span><a class="arrow-link"
+                        href="tournament-detail.html">↗</a>
+                </div>
+                <div class="match-row" data-state="upcoming">
+                    <div class="match-game"><span class="game-icon icon-c">C</span>
+                        <div><strong>Night Shift · Round 1</strong><small>CS2 · OCT 15, 17:00 IST</small></div>
+                    </div>
+                    <div class="versus"><b>FURY</b><span>VS</span><b>WOLF</b></div><span
+                        class="match-status status-upcoming">UPCOMING</span><a class="arrow-link"
+                        href="tournament-detail.html">↗</a>
+                </div>
+            </div>
+            <p class="form-note">Match scores and statuses are sample content for demonstration.</p>
+        </section>
+    </main>
+    <footer class="footer"><a class="brand" href="index.html"><span class="brand-mark">A</span><span>ARENA<span
+                    class="brand-dot">.</span><small>COMPETE TOGETHER</small></span></a>
+        <p>Follow the competition.</p>
+        <div class="footer-links"><a href="index.html">Home</a><a href="tournaments.html">Tournaments</a><a
+                href="matches.html">Matches</a><a href="teams.html">Teams</a><a href="media.html">Media</a><a
+                href="admin.html">Admin</a></div><small>© 2026 ARENA. Demo content only.</small>
+    </footer>
+    <script src="assets/app.js"></script>
+</body>
+
+</html>

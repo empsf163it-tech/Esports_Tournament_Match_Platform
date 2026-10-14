@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Tournaments — ARENA</title>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <header class="site-header"><a class="brand" href="index.html"><span class="brand-mark">A</span><span>ARENA<span
+                    class="brand-dot">.</span><small>COMPETE TOGETHER</small></span></a><button class="menu-toggle"
+            aria-label="Toggle navigation" data-menu-toggle>☰</button>
+        <nav class="nav" data-nav><a href="index.html">Home</a><a class="active"
+                href="tournaments.html">Tournaments</a><a href="matches.html">Matches</a><a
+                href="teams.html">Teams</a><a href="media.html">Media</a><a href="admin.html">Admin</a></nav>
+        <div class="header-actions"><a class="btn btn-primary"
+                href="tournaments.html">Find tournaments <span>↗</span></a></div>
+    </header>
+    <main>
+        <section class="page-hero wrap">
+            <div class="eyebrow">FIND YOUR NEXT CHALLENGE</div>
+            <h1>Choose your <span>battle.</span></h1>
+            <p>Browse competitions, check the details, and find the tournament that fits your squad.</p>
+        </section>
+        <section class="section wrap">
+            <!-- SPOTLIGHT CHAMPIONSHIP BANNER -->
+            <div class="tournament-spotlight-banner">
+                <div class="tournament-spotlight-info">
+                    <span class="pill pill-live">● FEATURED CHAMPIONSHIP</span>
+                    <h2>Road to TwitchCon <span>2026 Finals</span></h2>
+                    <p>32 Elite Squads · Main Stage Broadcast · ₹2,50,000 Total Prize Pool</p>
+                </div>
+                <div>
+                    <a class="btn btn-primary" href="tournament-detail.html">Tournament info & bracket <span>↗</span></a>
+                </div>
+            </div>
+
+            <div class="filter-bar"><label class="search-box">⌕ <input id="tournament-search" type="search"
+                        placeholder="Search tournaments or games..." aria-label="Search tournaments"></label><select
+                    id="game-filter" aria-label="Filter by game">
+                    <option value="all">All games</option>
+                    <option value="valorant">Valorant</option>
+                    <option value="bgmi">BGMI</option>
+                    <option value="cs2">CS2</option>
+                </select><select id="status-filter" aria-label="Filter by status">
+                    <option value="all">All statuses</option>
+                    <option value="open">Registration open</option>
+                    <option value="soon">Starts soon</option>
+                </select></div>
+            <div class="card-grid" id="tournament-grid">
+                <article class="event-card event-valorant" data-game="valorant" data-status="open"
+                    data-search="neon clash championship valorant">
+                    <div class="event-top"><span class="game-tag">VALORANT</span><span
+                            class="pill pill-open">REGISTRATION OPEN</span></div>
+                    <div class="event-art event-art-neon"><span class="event-number">01</span><span
+                            class="event-word">NEON<br>CLASH</span></div>
+                    <div class="event-info">
+                        <h3>Neon Clash Championship</h3>
+                        <p>5v5 · Single elimination · Starts Oct 24</p>
+                        <div class="event-meta">
+                            <div><small>PRIZE POOL</small><strong>₹1,00,000</strong></div>
+                            <div><small>TEAMS</small><strong>16 / 32</strong></div>
+                        </div><button class="btn btn-outline full" data-register="Neon Clash Championship">Register
+                            interest ↗</button>
+                    </div>
+                </article>
+                <article class="event-card event-bgmi" data-game="bgmi" data-status="open"
+                    data-search="drop zone open series bgmi">
+                    <div class="event-top"><span class="game-tag">BGMI</span><span class="pill pill-open">REGISTRATION
+                            OPEN</span></div>
+                    <div class="event-art event-art-drop"><span class="event-number">02</span><span
+                            class="event-word">DROP<br>ZONE</span></div>
+                    <div class="event-info">
+                        <h3>Drop Zone Open Series</h3>
+                        <p>Squads · Battle royale · Starts Oct 26</p>
+                        <div class="event-meta">
+                            <div><small>PRIZE POOL</small><strong>₹75,000</strong></div>
+                            <div><small>TEAMS</small><strong>21 / 25</strong></div>
+                        </div><button class="btn btn-outline full" data-register="Drop Zone Open Series">Register
+                            interest ↗</button>
+                    </div>
+                </article>
+                <article class="event-card event-cs" data-game="cs2" data-status="soon"
+                    data-search="frag league invitational counter strike cs2">
+                    <div class="event-top"><span class="game-tag">CS2</span><span class="pill pill-soon">STARTS
+                            SOON</span></div>
+                    <div class="event-art event-art-frag"><span class="event-number">03</span><span
+                            class="event-word">FRAG<br>LEAGUE</span></div>
+                    <div class="event-info">
+                        <h3>Frag League Invitational</h3>
+                        <p>5v5 · Group stage + playoffs · Oct 28</p>
+                        <div class="event-meta">
+                            <div><small>PRIZE POOL</small><strong>₹50,000</strong></div>
+                            <div><small>TEAMS</small><strong>8 / 16</strong></div>
+                        </div><button class="btn btn-outline full" data-register="Frag League Invitational">Register
+                            interest ↗</button>
+                    </div>
+                </article>
+                <article class="event-card event-valorant" data-game="valorant" data-status="soon"
+                    data-search="rookie rush valorant beginners">
+                    <div class="event-top"><span class="game-tag">VALORANT</span><span class="pill pill-soon">STARTS
+                            SOON</span></div>
+                    <div class="event-art event-art-rookie"><span class="event-number">04</span><span
+                            class="event-word">ROOKIE<br>RUSH</span></div>
+                    <div class="event-info">
+                        <h3>Rookie Rush Cup</h3>
+                        <p>5v5 · Community cup · Nov 02</p>
+                        <div class="event-meta">
+                            <div><small>PRIZE POOL</small><strong>₹20,000</strong></div>
+                            <div><small>TEAMS</small><strong>4 / 16</strong></div>
+                        </div><button class="btn btn-outline full" data-register="Rookie Rush Cup">Register interest
+                            ↗</button>
+                    </div>
+                </article>
+                <article class="event-card event-bgmi" data-game="bgmi" data-status="open"
+                    data-search="survival circuit bgmi squads">
+                    <div class="event-top"><span class="game-tag">BGMI</span><span class="pill pill-open">REGISTRATION
+                            OPEN</span></div>
+                    <div class="event-art event-art-survival"><span class="event-number">05</span><span
+                            class="event-word">SURVIVAL<br>CIRCUIT</span></div>
+                    <div class="event-info">
+                        <h3>Survival Circuit</h3>
+                        <p>Squads · Points format · Nov 05</p>
+                        <div class="event-meta">
+                            <div><small>PRIZE POOL</small><strong>₹35,000</strong></div>
+                            <div><small>TEAMS</small><strong>12 / 24</strong></div>
+                        </div><button class="btn btn-outline full" data-register="Survival Circuit">Register interest
+                            ↗</button>
+                    </div>
+                </article>
+                <article class="event-card event-cs" data-game="cs2" data-status="open"
+                    data-search="night shift showdown cs2">
+                    <div class="event-top"><span class="game-tag">CS2</span><span class="pill pill-open">REGISTRATION
+                            OPEN</span></div>
+                    <div class="event-art event-art-night"><span class="event-number">06</span><span
+                            class="event-word">NIGHT<br>SHIFT</span></div>
+                    <div class="event-info">
+                        <h3>Night Shift Showdown</h3>
+                        <p>5v5 · Double elimination · Nov 08</p>
+                        <div class="event-meta">
+                            <div><small>PRIZE POOL</small><strong>₹40,000</strong></div>
+                            <div><small>TEAMS</small><strong>6 / 16</strong></div>
+                        </div><button class="btn btn-outline full" data-register="Night Shift Showdown">Register
+                            interest ↗</button>
+                    </div>
+                </article>
+            </div>
+            <p class="empty-state" id="no-results" hidden>No tournaments match your filters. Try another search.</p>
+        </section>
+    </main>
+    <footer class="footer"><a class="brand" href="index.html"><span class="brand-mark">A</span><span>ARENA<span
+                    class="brand-dot">.</span><small>COMPETE TOGETHER</small></span></a>
+        <p>Demo tournament data — replace with real event information.</p>
+        <div class="footer-links"><a href="index.html">Home</a><a href="tournaments.html">Tournaments</a><a
+                href="matches.html">Matches</a><a href="teams.html">Teams</a><a href="media.html">Media</a><a
+                href="admin.html">Admin</a></div><small>© 2026 ARENA. Demo content only.</small>
+    </footer>
+    <div class="modal-backdrop" id="register-modal" hidden>
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button class="modal-close"
+                data-close-modal aria-label="Close">×</button>
+            <div class="eyebrow">TOURNAMENT INTEREST</div>
+            <h2 id="modal-title">Join the <span>lineup.</span></h2>
+            <p id="modal-event">Selected tournament</p>
+            <form id="interest-form"><label>Team or player name<input required name="player"
+                        placeholder="Enter your gaming name"></label><label>Email address<input required type="email"
+                        name="email" placeholder="you@example.com"></label><button class="btn btn-primary full"
+                    type="submit">Submit interest ↗</button><small class="form-note">Demo only. This form does not send
+                    or store data.</small></form>
+            <p id="form-success" class="success-message" hidden>Thanks! Your demo interest has been recorded on this
+                screen.</p>
+        </div>
+    </div>
+    <script src="assets/app.js"></script>
+</body>
+
+</html>
