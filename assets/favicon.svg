@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="arena-brand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#15803d" />
+    </linearGradient>
+    <linearGradient id="arena-bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    <filter id="arena-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#22c55e" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Polygonal Chamfered Shield matching brand-mark geometry -->
+  <polygon points="6,6 58,6 58,44 44,58 6,58" fill="url(#arena-bg-grad)" stroke="#22c55e" stroke-width="2.5" />
+
+  <!-- Futuristic Capital 'A' with sharp esports apex -->
+  <path d="M32 14 L47 49 H39.5 L36.2 41 H27.8 L24.5 49 H17 Z M32 23.5 L34.2 34.5 H29.8 Z" 
+        fill="url(#arena-brand-grad)" filter="url(#arena-glow)" />
+
+  <!-- The Signature Brand Accent Dot -->
+  <circle cx="51" cy="49" r="3.5" fill="#4ade80" />
+</svg>

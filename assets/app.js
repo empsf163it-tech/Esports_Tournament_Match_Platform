@@ -1,7 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
   const menuToggle = document.querySelector('[data-menu-toggle]');
   const nav = document.querySelector('[data-nav]');
-  if (menuToggle && nav) menuToggle.addEventListener('click', () => nav.classList.toggle('nav-open'));
+  if (menuToggle && nav) {
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      nav.classList.toggle('nav-open');
+    });
+    document.addEventListener('click', (e) => {
+      if (nav.classList.contains('nav-open') && !nav.contains(e.target) && e.target !== menuToggle) {
+        nav.classList.remove('nav-open');
+      }
+    });
+  }
 
   const search = document.getElementById('tournament-search');
   const gameFilter = document.getElementById('game-filter');
@@ -91,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusCell = document.createElement('td'); statusCell.innerHTML = '<span class="pill pill-open">Draft</span>';
     const teamsCell = document.createElement('td'); teamsCell.textContent = '0 / ' + data.get('capacity');
     const prizeCell = document.createElement('td'); prizeCell.textContent = data.get('prize');
-    const actionCell = document.createElement('td'); actionCell.innerHTML = '<a class="text-link" href="tournament-detail.html">Manage bracket ↗</a>';
+    const actionCell = document.createElement('td'); actionCell.innerHTML = '<a class="text-link" href="tournament-detail.html">Manage bracket</a>';
     row.append(nameCell, gameCell, formatCell, statusCell, teamsCell, prizeCell, actionCell);
     document.getElementById('admin-tournament-table')?.prepend(row);
     const metric = document.getElementById('metric-tournaments'); if (metric) metric.textContent = String(Number(metric.textContent) + 1);
@@ -132,4 +142,50 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   });
+
+  // PURE BRIGHT MODE (No toggle needed)
+  document.documentElement.removeAttribute('data-theme');
+  try { localStorage.removeItem('arena_theme'); } catch (e) {}
+
+  // BACK TO TOP BUTTON LOGIC
+  const backToTopBtn = document.getElementById('back-to-top');
+  if (backToTopBtn) {
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+
+  // NEWSLETTER SUBSCRIPTION HANDLER
+  const newsletterForm = document.getElementById('newsletter-form');
+  if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = newsletterForm.querySelector('button');
+      const input = newsletterForm.querySelector('input[type="email"]');
+      if (btn) {
+        const origText = btn.textContent;
+        btn.textContent = 'Subscribed!';
+        btn.disabled = true;
+        if (input) input.value = '';
+        setTimeout(() => {
+          btn.textContent = origText;
+          btn.disabled = false;
+        }, 3000);
+      }
+    });
+  }
+
 });
