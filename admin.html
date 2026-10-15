@@ -8,7 +8,55 @@
     <link rel="stylesheet" href="assets/style.css">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="alternate icon" href="assets/favicon.svg">
-    <meta name="theme-color" content="#ffffff">
+    <style>
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        body {
+            padding-top: 80px;
+        }
+        @media (max-width: 820px) {
+            body {
+                padding-top: 68px;
+            }
+        }
+        @media (max-width: 600px) {
+            body {
+                padding-top: 62px;
+            }
+        }
+        .admin-table-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+        .admin-table-wrap::-webkit-scrollbar {
+            height: 6px;
+        }
+        .admin-table-wrap::-webkit-scrollbar-track {
+            background: var(--panel2);
+            border-radius: 3px;
+        }
+        .admin-table-wrap::-webkit-scrollbar-thumb {
+            background: var(--line-strong);
+            border-radius: 3px;
+        }
+        .admin-table-wrap::-webkit-scrollbar-thumb:hover {
+            background: var(--lime);
+        }
+        .admin-table-wrap table {
+            min-width: 780px;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,17 +78,6 @@
             </a>
         </div>
     </header>
-
-    <!-- DASHBOARD SUB-TOOLBAR FOR QUICK SECTION JUMPING -->
-    <div class="admin-subnav">
-        <div class="admin-subnav-items">
-            <a href="#events" class="admin-subnav-link active">Tournaments <span class="subnav-badge">6</span></a>
-            <a href="#registrations" class="admin-subnav-link">Recent Signups <span class="subnav-badge">3</span></a>
-            <a href="#fixtures" class="admin-subnav-link">Match Operations</a>
-            <a href="#settings" class="admin-subnav-link">Workspace Settings</a>
-            <a href="tournaments.html" class="admin-subnav-link">Public Circuit View</a>
-        </div>
-    </div>
 
     <!-- MAIN SINGLE-PAGE DASHBOARD CONTENT (NO SIDEBAR) -->
     <main class="admin-shell single-page">

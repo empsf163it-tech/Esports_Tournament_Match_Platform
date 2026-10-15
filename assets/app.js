@@ -4,11 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (menuToggle && nav) {
     menuToggle.addEventListener('click', (e) => {
       e.stopPropagation();
-      nav.classList.toggle('nav-open');
+      const isOpen = nav.classList.toggle('nav-open');
+      document.body.classList.toggle('nav-open', isOpen);
+      menuToggle.textContent = isOpen ? '✕' : '☰';
     });
     document.addEventListener('click', (e) => {
       if (nav.classList.contains('nav-open') && !nav.contains(e.target) && e.target !== menuToggle) {
         nav.classList.remove('nav-open');
+        document.body.classList.remove('nav-open');
+        menuToggle.textContent = '☰';
       }
     });
   }

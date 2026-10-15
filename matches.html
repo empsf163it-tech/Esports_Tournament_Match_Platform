@@ -9,13 +9,123 @@
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="alternate icon" href="assets/favicon.svg">
     <meta name="theme-color" content="#ffffff">
+    <style>
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        body {
+            padding-top: 80px;
+        }
+        @media (max-width: 820px) {
+            body {
+                padding-top: 68px;
+            }
+        }
+        @media (max-width: 600px) {
+            body {
+                padding-top: 62px;
+            }
+        }
+        body.nav-open .header-actions,
+        .site-header:has(.nav.nav-open) .header-actions,
+        .nav.nav-open ~ .header-actions {
+            display: none !important;
+        }
+        .tab-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .tab {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            color: var(--muted);
+            font: 13px var(--mono);
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 4px;
+            white-space: nowrap;
+            text-align: center;
+        }
+        .tab:hover {
+            border-color: var(--lime);
+            color: var(--text);
+            background: var(--panel2);
+        }
+        .tab.active {
+            border-color: var(--lime);
+            color: var(--lime);
+            background: var(--lime-subtle);
+            font-weight: 600;
+            box-shadow: 0 2px 8px var(--lime-glow);
+        }
+        @media (max-width: 520px) {
+            .tab-bar {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .tab {
+                width: 100%;
+                padding: 10px 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        .match-list {
+            border-top: 1px solid var(--line);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            width: 100%;
+            max-width: 100%;
+        }
+        .match-list::-webkit-scrollbar {
+            height: 6px;
+        }
+        .match-list::-webkit-scrollbar-track {
+            background: var(--panel2);
+            border-radius: 3px;
+        }
+        .match-list::-webkit-scrollbar-thumb {
+            background: var(--line-strong);
+            border-radius: 3px;
+        }
+        .match-list::-webkit-scrollbar-thumb:hover {
+            background: var(--lime);
+        }
+        .match-list .match-row {
+            display: grid;
+            grid-template-columns: minmax(220px, 1.4fr) minmax(180px, 1fr) 130px 28px;
+            min-width: 620px;
+            align-items: center;
+            gap: 18px;
+            padding: 19px 15px;
+            border-bottom: 1px solid var(--line);
+            background: transparent;
+            transition: background .2s;
+            color: var(--text);
+            box-sizing: border-box;
+        }
+        .match-row .versus {
+            justify-content: flex-start;
+        }
+    </style>
 </head>
 
 <body>
     <header class="site-header"><a class="brand" href="index.html"><span class="brand-mark">A</span><span>ARENA<span
                     class="brand-dot">.</span><small>COMPETE TOGETHER</small></span></a><button class="menu-toggle"
             aria-label="Toggle navigation" data-menu-toggle>☰</button>
-        <nav class="nav" data-nav><a href="index.html">Home</a><a href="tournaments.html">Tournaments</a><a
+        <nav class="nav" data-nav><a href="index.html">Home</a><!-- <a href="tournaments.html">Tournaments</a> (Hidden for future usage - redundant with CTA button) --><a
                 class="active" href="matches.html">Matches</a><a href="teams.html">Teams</a><a
                 href="media.html">Media</a><a href="admin.html">Admin</a>
       <div class="nav-mobile-cta">
@@ -59,7 +169,7 @@
                     <div class="match-game"><span class="game-icon icon-v">V</span>
                         <div><strong>Neon Clash · Semi-final</strong><small>VALORANT · OCT 14, 18:30 IST</small></div>
                     </div>
-                    <div class="versus"><b>VTX</b><span>VS</span><b>RAV</b></div><span
+                    <div class="versus" style="justify-content: flex-start;"><b>VTX</b><span>VS</span><b>RAV</b></div><span
                         class="match-status status-upcoming">UPCOMING</span><a class="arrow-link"
                         href="tournament-detail.html"></a>
                 </div>
@@ -67,7 +177,7 @@
                     <div class="match-game"><span class="game-icon icon-b">B</span>
                         <div><strong>Drop Zone · Round 3</strong><small>BGMI · OCT 14, 20:00 IST</small></div>
                     </div>
-                    <div class="versus"><b>NXG <em>42</em></b><span>VS</span><b>FURY <em>36</em></b></div><span
+                    <div class="versus" style="justify-content: flex-start;"><b>NXG <em>42</em></b><span>VS</span><b>FURY <em>36</em></b></div><span
                         class="match-status status-live">● LIVE</span><a class="arrow-link"
                         href="tournament-detail.html"></a>
                 </div>
@@ -75,7 +185,7 @@
                     <div class="match-game"><span class="game-icon icon-c">C</span>
                         <div><strong>Frag League · Group A</strong><small>CS2 · OCT 13, 17:00 IST</small></div>
                     </div>
-                    <div class="versus"><b>WOLF <em>13</em></b><span>VS</span><b>ARC <em>9</em></b></div><span
+                    <div class="versus" style="justify-content: flex-start;"><b>WOLF <em>13</em></b><span>VS</span><b>ARC <em>9</em></b></div><span
                         class="match-status status-done">COMPLETED</span><a class="arrow-link"
                         href="tournament-detail.html"></a>
                 </div>
@@ -83,7 +193,7 @@
                     <div class="match-game"><span class="game-icon icon-v">V</span>
                         <div><strong>Rookie Rush · Qualifier</strong><small>VALORANT · OCT 12, 19:00 IST</small></div>
                     </div>
-                    <div class="versus"><b>ARC <em>2</em></b><span>VS</span><b>ZEN <em>0</em></b></div><span
+                    <div class="versus" style="justify-content: flex-start;"><b>ARC <em>2</em></b><span>VS</span><b>ZEN <em>0</em></b></div><span
                         class="match-status status-done">COMPLETED</span><a class="arrow-link"
                         href="tournament-detail.html"></a>
                 </div>
@@ -91,7 +201,7 @@
                     <div class="match-game"><span class="game-icon icon-c">C</span>
                         <div><strong>Night Shift · Round 1</strong><small>CS2 · OCT 15, 17:00 IST</small></div>
                     </div>
-                    <div class="versus"><b>FURY</b><span>VS</span><b>WOLF</b></div><span
+                    <div class="versus" style="justify-content: flex-start;"><b>FURY</b><span>VS</span><b>WOLF</b></div><span
                         class="match-status status-upcoming">UPCOMING</span><a class="arrow-link"
                         href="tournament-detail.html"></a>
                 </div>

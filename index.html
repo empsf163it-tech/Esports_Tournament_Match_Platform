@@ -11,6 +11,44 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="alternate icon" href="assets/favicon.svg">
   <meta name="theme-color" content="#ffffff">
+  <style>
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    body {
+      padding-top: 80px;
+    }
+    body.nav-open .header-actions,
+    .site-header:has(.nav.nav-open) .header-actions,
+    .nav.nav-open ~ .header-actions {
+      display: none !important;
+    }
+    @media (max-width: 820px) {
+      body {
+        padding-top: 68px;
+      }
+      .hero-bracket-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+    }
+    @media (max-width: 600px) {
+      body {
+        padding-top: 62px;
+      }
+      .hero-bracket-head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -22,7 +60,7 @@
     <button class="menu-toggle" aria-label="Toggle navigation" data-menu-toggle>☰</button>
     <nav class="nav" data-nav>
       <a class="active" href="index.html">Home</a>
-      <a href="tournaments.html">Tournaments</a>
+      <!-- <a href="tournaments.html">Tournaments</a> (Hidden for future usage - redundant with CTA button) -->
       <a href="matches.html">Matches</a>
       <a href="teams.html">Teams</a>
       <a href="media.html">Media</a>

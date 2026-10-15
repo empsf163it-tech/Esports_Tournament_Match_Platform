@@ -101,19 +101,21 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  scroll-padding-top: 85px;
+  overflow-x: clip;
   max-width: 100vw;
   width: 100%;
 }
 
 body {
   margin: 0;
+  padding-top: 80px;
   background: var(--bg);
   color: var(--text);
   font-family: var(--font);
   line-height: 1.55;
   transition: background-color 0.2s ease, color 0.2s ease;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100vw;
   width: 100%;
 }
@@ -156,13 +158,16 @@ img {
   gap: 24px;
   border-bottom: 1px solid var(--header-border);
   background: var(--header-bg);
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 50;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
   backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
   transition: background-color 0.2s ease, border-color 0.2s ease;
-  max-width: 100%;
   box-sizing: border-box;
 }
 
@@ -228,6 +233,11 @@ img {
 .nav a.active {
   color: var(--lime);
   font-weight: 600;
+}
+
+/* Hide Tournaments nav item for future usage (handled by header CTA button), keeping CTA buttons visible */
+.nav > a[href="tournaments.html"] {
+  display: none !important;
 }
 
 .header-actions {
@@ -547,6 +557,11 @@ img {
 }
 
 @media (max-width: 820px) {
+  .hero-bracket-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
   .bracket-stage-tree {
     grid-template-columns: 1fr;
     gap: 18px;
@@ -643,6 +658,8 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
   margin-bottom: 20px;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--line);
@@ -1865,8 +1882,106 @@ img {
 /* ========================================================
    MATCHES, TEAMS & LEADERBOARDS
    ======================================================== */
+.tab-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.tab {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font: 13px var(--mono);
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.tab:hover {
+  border-color: var(--lime);
+  color: var(--text);
+  background: var(--panel2);
+}
+
+.tab.active {
+  border-color: var(--lime);
+  color: var(--lime);
+  background: var(--lime-subtle);
+  font-weight: 600;
+  box-shadow: 0 2px 8px var(--lime-glow);
+}
+
+@media (max-width: 520px) {
+  .tab-bar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .tab {
+    width: 100%;
+    padding: 10px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 .match-list {
   border-top: 1px solid var(--line);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  width: 100%;
+  max-width: 100%;
+}
+
+.match-list::-webkit-scrollbar,
+.admin-table-wrap::-webkit-scrollbar,
+.leaderboard::-webkit-scrollbar,
+.bracket-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.match-list::-webkit-scrollbar-track,
+.admin-table-wrap::-webkit-scrollbar-track,
+.leaderboard::-webkit-scrollbar-track,
+.bracket-scroll::-webkit-scrollbar-track {
+  background: var(--panel2);
+  border-radius: 3px;
+}
+
+.match-list::-webkit-scrollbar-thumb,
+.admin-table-wrap::-webkit-scrollbar-thumb,
+.leaderboard::-webkit-scrollbar-thumb,
+.bracket-scroll::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 3px;
+}
+
+.match-list::-webkit-scrollbar-thumb:hover,
+.admin-table-wrap::-webkit-scrollbar-thumb:hover,
+.leaderboard::-webkit-scrollbar-thumb:hover,
+.bracket-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--lime);
+}
+
+.match-list .match-row {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.4fr) minmax(180px, 1fr) 130px 28px;
+  min-width: 620px;
+  align-items: center;
+  gap: 18px;
+  padding: 19px 15px;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  transition: background .2s;
+  color: var(--text);
+  box-sizing: border-box;
 }
 
 .match-row {
@@ -1929,7 +2044,7 @@ img {
 .versus {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 12px;
   font: 14px var(--mono);
   color: var(--text);
@@ -1991,7 +2106,9 @@ img {
 .leaderboard {
   border: 1px solid var(--line);
   border-radius: 6px;
-  overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
 }
 
 .leader-head,
@@ -2001,6 +2118,8 @@ img {
   align-items: center;
   gap: 20px;
   padding: 16px 20px;
+  min-width: 520px;
+  box-sizing: border-box;
 }
 
 .leader-head {
@@ -2246,10 +2365,10 @@ img {
 }
 
 .team-card-banner {
-  height: 95px;
+  height: 185px;
   margin: 0 -22px 0;
   background-size: cover;
-  background-position: center;
+  background-position: center 20%;
   position: relative;
 }
 
@@ -2257,7 +2376,7 @@ img {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.2) 0%, rgba(15, 23, 42, 0.75) 100%);
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.05) 0%, rgba(15, 23, 42, 0.4) 100%);
 }
 
 .team-logo {
@@ -2278,7 +2397,7 @@ img {
 .team-card > .pill {
   position: absolute;
   right: 18px;
-  top: 110px;
+  top: 200px;
 }
 
 .team-card h3 {
@@ -2533,6 +2652,8 @@ img {
 /* Bracket View */
 .bracket-scroll {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
   padding: 15px 0;
 }
 
@@ -2674,71 +2795,13 @@ img {
   transform: translateY(-1px);
 }
 
-/* Dashboard Sub-Toolbar */
+/* Dashboard Sub-Toolbar (Removed per user request) */
 .admin-subnav {
-  background: var(--panel);
-  border-bottom: 1px solid var(--line);
-  padding: 0 max(24px, calc((100% - 1280px)/2));
-  width: 100%;
-  box-sizing: border-box;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.admin-subnav::-webkit-scrollbar {
-  display: none;
-}
-
-.admin-subnav-items {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 0;
-  white-space: nowrap;
-}
-
-.admin-subnav-link {
-  font: 13px var(--mono);
-  color: var(--muted);
-  padding: 6px 14px;
-  border-radius: 6px;
-  border: 1px solid transparent;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.admin-subnav-link:hover {
-  color: var(--text);
-  background: var(--panel2);
-}
-
-.admin-subnav-link.active {
-  color: var(--lime);
-  background: var(--lime-subtle);
-  border-color: var(--lime-border);
-  font-weight: 600;
-}
-
-.subnav-badge {
-  font-size: 11px;
-  padding: 1px 6px;
-  border-radius: 10px;
-  background: var(--line);
-  color: var(--muted-dark);
-}
-
-.admin-subnav-link.active .subnav-badge {
-  background: var(--lime);
-  color: #ffffff;
+  display: none !important;
 }
 
 section.admin-panel {
-  scroll-margin-top: 140px;
+  scroll-margin-top: 90px;
 }
 
 .admin-content {
@@ -2892,8 +2955,16 @@ section.admin-panel {
 
 .admin-table-wrap {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
   border: 1px solid var(--line);
   border-radius: 6px;
+  width: 100%;
+}
+
+.admin-table-wrap table {
+  min-width: 780px;
+  width: 100%;
 }
 
 table {
@@ -3380,6 +3451,12 @@ td small {
 
 /* 3. Mobile & Compact Tablet: <= 820px */
 @media (max-width: 820px) {
+  html {
+    scroll-padding-top: 72px;
+  }
+  body {
+    padding-top: 68px;
+  }
   .wrap {
     width: calc(100% - 32px);
     max-width: 100%;
@@ -3431,7 +3508,7 @@ td small {
     position: absolute;
     left: 0;
     right: 0;
-    top: 67px;
+    top: 100%;
     background: var(--panel);
     border-bottom: 1px solid var(--line);
     box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
@@ -3444,28 +3521,40 @@ td small {
   .nav.nav-open {
     display: flex;
   }
-  .nav a {
+  .nav.nav-open ~ .header-actions,
+  .nav.nav-open ~ .header-actions .btn,
+  body.nav-open .header-actions,
+  body.nav-open .header-actions .btn,
+  .site-header:has(.nav.nav-open) .header-actions,
+  .site-header:has(.nav.nav-open) .header-actions .btn {
+    display: none !important;
+  }
+  .nav > a {
     font-size: 15px;
     padding: 8px 0;
     border-bottom: 1px solid var(--line-light);
     color: var(--text);
   }
-  .nav a:last-of-type {
+  .nav > a:last-of-type {
     border-bottom: none;
   }
   .nav-mobile-cta {
-    display: block;
+    display: block !important;
     width: 100%;
-    padding-top: 10px;
-    margin-top: 4px;
+    padding-top: 12px;
+    margin-top: 6px;
     border-top: 1px solid var(--line);
   }
-  .nav-mobile-cta .btn {
+  .nav-mobile-cta .btn,
+  .nav-mobile-cta a.btn {
+    display: flex !important;
     width: 100%;
     justify-content: center;
+    align-items: center;
     padding: 11px 16px;
     font-size: 14px;
     font-weight: 700;
+    border-bottom: none !important;
   }
   .hero {
     grid-template-columns: 1fr;
@@ -3556,6 +3645,12 @@ td small {
 
 /* 4. Small Mobile: <= 600px */
 @media (max-width: 600px) {
+  html {
+    scroll-padding-top: 66px;
+  }
+  body {
+    padding-top: 62px;
+  }
   .wrap {
     width: calc(100% - 24px);
   }
@@ -3687,7 +3782,9 @@ td small {
 /* 5. Ultra-compact Mobile: <= 360px */
 @media (max-width: 360px) {
   .header-actions .btn {
-    display: none;
+    display: inline-flex !important;
+    padding: 6px 8px;
+    font-size: 11px;
   }
   .registration-actions,
   .match-row-actions {
